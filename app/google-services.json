@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "474277397029",
+    "firebase_url": "https://veg-delivery-7961f.firebaseio.com",
+    "project_id": "veg-delivery-7961f",
+    "storage_bucket": "veg-delivery-7961f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474277397029:android:a6ac502b7135fd1b3ff5cc",
+        "android_client_info": {
+          "package_name": "com.example.vegitable_delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474277397029-aob405a3vapcmetn0d6cvk4pr9a8uq6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0z0o7YLQ9hJxxzEgDfVMiFQvKh_Pr3vw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474277397029-aob405a3vapcmetn0d6cvk4pr9a8uq6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

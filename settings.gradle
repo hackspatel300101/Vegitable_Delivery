@@ -1,0 +1,2 @@
+rootProject.name='Vegitable_Delivery'
+include ':app'
