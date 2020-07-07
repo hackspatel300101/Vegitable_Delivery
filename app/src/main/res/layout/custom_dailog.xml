@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minHeight="300dp"
+    android:minWidth="400dp"
     android:orientation="vertical"
     >
     <com.jaredrummler.materialspinner.MaterialSpinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:id="@+id/name_spinner"
         android:hint="શાકભાજી પસંદ કરો"
         android:layout_marginTop="20dp"/>
     <com.jaredrummler.materialspinner.MaterialSpinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:hint="વજન પસંદ કરો"
         android:id="@+id/weight_spinner"
         android:layout_marginTop="20dp"/>
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/ok_btn"
             android:layout_width="wrap_content"

@@ -8,10 +8,14 @@ public class Product_details {
 
 
 
-    public Product_details() {
-
-
+    public Product_details(String imageurl, String name, String price, String weight) {
+        this.imageurl = imageurl;
+        this.name = name;
+        this.price = price;
+        this.weight = weight;
     }
+
+
 
     @Override
     public String toString() {
