@@ -11,9 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-
-        <activity
-            android:name=".MainActivity">
+        <activity android:name=".OderActivity"></activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,13 +31,11 @@
             android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".Price_list"
-            android:parentActivityName=".HomeActivity">
-
-        </activity>
-        <activity android:name=".OderActivity"
+            android:parentActivityName=".HomeActivity"></activity>
+        <activity
+            android:name=".OderActivity1"
             android:label="ખરીદી કરો"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>

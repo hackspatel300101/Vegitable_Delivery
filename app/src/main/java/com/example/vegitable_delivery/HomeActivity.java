@@ -77,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
         oder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this,OderActivity.class);
+                Intent i = new Intent(HomeActivity.this, OderActivity.class);
                 startActivity(i);
                 finish();
             }
