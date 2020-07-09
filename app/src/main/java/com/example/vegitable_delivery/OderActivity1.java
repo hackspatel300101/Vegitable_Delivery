@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,13 +27,18 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,9 +51,9 @@ public class OderActivity1 extends AppCompatActivity {
     ArrayList<String> arrayList;
     ArrayAdapter<String> adapter;
     Button submit;
-    String URL;
+    String URL="https://rich-ears.000webhostapp.com/getoder.php";
     RequestQueue requestQueue;
-
+    String obj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +75,9 @@ public class OderActivity1 extends AppCompatActivity {
         name_address=findViewById(R.id.name_address);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        GsonBuilder gsonBuilder =  new GsonBuilder();
+        Gson gson = gsonBuilder.create();
+         obj= gson.toJson(arrayList);
         requestQueue= Volley.newRequestQueue(getApplicationContext());
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +90,7 @@ public class OderActivity1 extends AppCompatActivity {
                         // The dialog is automatically dismissed when a dialog button is clicked.
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(OderActivity1.this, "Oder Submited", Toast.LENGTH_SHORT).show();
+                               SubmitData();
 
                             }
                         })
@@ -112,6 +121,7 @@ public class OderActivity1 extends AppCompatActivity {
                         if (object.getBoolean("key")) {
                             number.getText().clear();
                             name_address.getText().clear();
+                            adapter.clear();
 
                             // here write image clear code
 
@@ -141,15 +151,21 @@ public class OderActivity1 extends AppCompatActivity {
                 protected Map<String, String> getParams() throws AuthFailureError {
 
                     Map<String, String> params = new HashMap<>();
-                    params.put("number", number.getText().toString().trim());
-                    params.put("name_add", name_address.getText().toString().trim());
+                   params.put("number", number.getText().toString().trim());
+                   params.put("name_add", name_address.getText().toString().trim());
+                   params.put("oder",obj);
+
                     return params;
+
                 }
             };
             requestQueue.add(stringRequest);
         }
 
     }
+
+
+
     public boolean CheckEmpty()
     {  // check the You enter number or anything else
 
