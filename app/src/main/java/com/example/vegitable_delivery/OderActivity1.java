@@ -1,18 +1,23 @@
 package com.example.vegitable_delivery;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,16 +33,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class OderActivity1 extends AppCompatActivity {
-   TextInputEditText oder_btn;
+   TextInputEditText number,name_address;
     DatabaseReference reference;
-   String URL="https://test-ajay.000webhostapp.com/show_item.php";
-    RequestQueue requestQueue;
-    JSONArray result;
     private ArrayList<String> name,weight;
-    MaterialSpinner vegname,vegweight;
-    String veg_name,veg_weight;
+    ListView listView;
+    ArrayList<String> arrayList;
+    ArrayAdapter<String> adapter;
+    Button submit;
+    String URL;
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,68 +57,117 @@ public class OderActivity1 extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("ખરીદી કરો");
-        requestQueue= Volley.newRequestQueue(getApplicationContext());
+        Intent i = getIntent();
         name= new ArrayList<String>();
         weight= new ArrayList<String>();
-        oder_btn=findViewById(R.id.oder_btn);
-
-
-
-    }
-
-
-    private void getdata() {
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+        arrayList= new ArrayList<String>();
+        arrayList = (ArrayList<String>) i.getSerializableExtra("list");
+        adapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arrayList);
+        listView=findViewById(R.id.submit_list);
+        submit=findViewById(R.id.submit_btn);
+        number=findViewById(R.id.phone);
+        name_address=findViewById(R.id.name_address);
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        requestQueue= Volley.newRequestQueue(getApplicationContext());
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(String response)
-            {
-                if(response!=null) {
-                    try {
+            public void onClick(View v) {
+                new AlertDialog.Builder(OderActivity1.this)
+                        .setTitle("તમારા ઓડર ની પુષ્ટિ ")
+                        .setMessage(" તમે ખરેખર આ ઓર્ડર સબમિટ કરો છો?")
 
-                        JSONObject jsonObject = new JSONObject(response);
-                        JSONArray jsonArray = jsonObject.getJSONArray("root");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject object = jsonArray.getJSONObject(i);
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(OderActivity1.this, "Oder Submited", Toast.LENGTH_SHORT).show();
 
-                            name.add(object.getString("name"));
-                            weight.add(object.getString("kilogram"));
+                            }
+                        })
 
-                            // here create model object and setter the data into setter method
-
-
-
-                        }
-
-                        vegname.setAdapter(new ArrayAdapter<String>(OderActivity1.this, android.R.layout.simple_spinner_dropdown_item, name));
-                        vegweight.setAdapter(new ArrayAdapter<String>(OderActivity1.this,android.R.layout.simple_spinner_dropdown_item,weight));
-
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Toast.makeText(OderActivity1.this, "exception"+e.getMessage(), Toast.LENGTH_LONG).show();
-
-                    }
-                }else
-                {
-                    Toast.makeText(OderActivity1.this, "null", Toast.LENGTH_LONG).show();
-
-                }
-
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton("No", null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
-        },new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-
-                Toast.makeText( OderActivity1.this,"Volley Response error"+error.getMessage(),Toast.LENGTH_LONG).show();
-            }
-
         });
 
 
-        requestQueue.add(stringRequest);
     }
+    public void SubmitData()
+    {
+
+        if(CheckEmpty()) {
+            //  Toast.makeText(Add_itemActivity.this, "Entered value =" + name.getText().toString() + "pirce = " + price.getText().toString() + "weight =" + weight.getText().toString() + " " + img, Toast.LENGTH_LONG).show();
+            final ProgressDialog progressDialog=new ProgressDialog(OderActivity1.this);
+            progressDialog.setMessage("Loading... ");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject object = new JSONObject(response);
+                        if (object.getBoolean("key")) {
+                            number.getText().clear();
+                            name_address.getText().clear();
+
+                            // here write image clear code
+
+                            Toast.makeText(OderActivity1.this, "Succees", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        } else {
+                            Toast.makeText(OderActivity1.this, "false", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    } catch (JSONException e) {
+                        Toast.makeText(OderActivity1.this, "Exception =" + e.getMessage(), Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
+
+                    }
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(OderActivity1.this, "Error =" + error.getMessage(), Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
+                }
+            }) {
+
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+
+                    Map<String, String> params = new HashMap<>();
+                    params.put("number", number.getText().toString().trim());
+                    params.put("name_add", name_address.getText().toString().trim());
+                    return params;
+                }
+            };
+            requestQueue.add(stringRequest);
+        }
+
+    }
+    public boolean CheckEmpty()
+    {  // check the You enter number or anything else
+
+
+        if(number.getText().toString().isEmpty())
+        {
+            number.setError("Invalid Input");
+            return false;
+
+        }else if(name_address.getText().toString().isEmpty())
+        {name_address.setError("Invalid Input");
+            return  false;
+        }else
+        {
+            return true;
+        }
+    }
+
 
 
 
@@ -118,7 +176,7 @@ public class OderActivity1 extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId()==android.R.id.home);
         {
-            Intent i = new Intent(OderActivity1.this,HomeActivity.class);
+            Intent i = new Intent(OderActivity1.this,OderActivity.class);
             startActivity(i);
             finish();
         }

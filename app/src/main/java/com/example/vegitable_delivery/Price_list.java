@@ -3,11 +3,14 @@ package com.example.vegitable_delivery;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -78,6 +81,7 @@ public class Price_list extends AppCompatActivity {
                             // here create model object and setter the data into setter method
                             Product_details product_details = new Product_details(imageurl,name,price,weight);
                             list.add(product_details);
+
 
 
                         }
