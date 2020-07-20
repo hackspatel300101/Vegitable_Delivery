@@ -5,12 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.vegitable_delivery.R;
 import com.example.vegitable_delivery.model.Oders_details;
-
 import java.util.List;
 
 
@@ -48,7 +46,7 @@ public class Oder_list_adp extends RecyclerView.Adapter<Oder_list_adp.Myholder>{
         return lits.size();
     }
 
-    class Myholder extends RecyclerView.ViewHolder{
+    class Myholder extends RecyclerView.ViewHolder  {
         TextView user_no,user_add,oder_time,oders;
 
         public Myholder(@NonNull View itemView) {
@@ -58,7 +56,9 @@ public class Oder_list_adp extends RecyclerView.Adapter<Oder_list_adp.Myholder>{
             oder_time=itemView.findViewById(R.id.oder_time);
             oders=itemView.findViewById(R.id.oders);
 
+
         }
+
 
     }
 

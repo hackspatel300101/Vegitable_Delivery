@@ -2,47 +2,79 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/vegetables"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@drawable/vegetables"
+    android:orientation="vertical"
     tools:context=".MainActivity">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
-        android:textStyle="bold|italic"
         android:fontFamily="sans-serif-black"
+        android:text="Diya"
         android:textAlignment="center"
-        android:textSize="20dp"
         android:textColor="@android:color/black"
-        android:text="Vegetable Delivery"/>
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/vegetable_delivery"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="165dp"
-        android:textStyle="bold|italic"
         android:fontFamily="sans-serif-black"
+        android:text="@string/text"
         android:textAlignment="center"
-        android:textSize="20dp"
         android:textColor="@android:color/black"
-        android:text="અવે મેળવો ઘરે બેઠા  "/>
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textStyle="bold|italic"
+        android:layout_marginStart="5dp"
         android:fontFamily="sans-serif-black"
+        android:text="@string/text1"
         android:textAlignment="center"
-        android:textSize="20dp"
         android:textColor="@android:color/black"
-        android:text="શુધ્ધ અને સસ્તા શાકભાજી "/>
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginTop="240dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/powerby"
+        android:textColor="@android:color/black"
+        android:textStyle="bold|italic" />
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/powerby1"
+        android:textColor="@android:color/black"
+        android:textStyle="bold|italic" />
 
 
 </LinearLayout>

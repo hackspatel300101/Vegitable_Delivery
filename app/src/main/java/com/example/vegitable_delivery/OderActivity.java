@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class OderActivity extends AppCompatActivity {
     ListView listView;
-    String URL="https://test-ajay.000webhostapp.com/show_item.php";
+    String URL="https://diyavegetable.000webhostapp.com/vegetable_show.php";
     RequestQueue requestQueue;
     JSONArray result;
     private ArrayList<String> name;
@@ -36,7 +36,7 @@ public class OderActivity extends AppCompatActivity {
     Button add,next,remove;
     String item;
     ArrayList<String> list;
-    ArrayAdapter<String> adapter1;
+   public static ArrayAdapter<String> adapter1;
     String arr[]={null,null,null} ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +96,6 @@ public class OderActivity extends AppCompatActivity {
                     }else {
 
                         Intent i = new Intent(OderActivity.this,OderActivity1.class);
-                        i.putExtra("list",list);
                         startActivity(i);
                         finish();
                     }
@@ -162,6 +161,12 @@ public class OderActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(OderActivity.this,HomeActivity.class);
+        startActivity(i);
+        finish();
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

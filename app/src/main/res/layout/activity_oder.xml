@@ -18,11 +18,25 @@
             android:layout_height="match_parent"
             android:padding="20dp"
             android:orientation="vertical">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:hint="તામારી ખરીદી"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_height="150dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:inputType="textMultiLine"
+                    android:lines="20"
+                    android:minLines="5"
+                    android:id="@+id/oder_ed"
+                    android:focusableInTouchMode="true"
+                    android:focusable="false"
+                    android:scrollHorizontally="false"
+                    android:scrollbars="vertical"
+                    android:layout_height="match_parent"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <ListView
-                android:layout_width="fill_parent"
-                android:layout_height="180dp"
-                android:id="@+id/submit_list"/>
 
 
             <com.google.android.material.textfield.TextInputLayout

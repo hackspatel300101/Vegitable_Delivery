@@ -43,7 +43,9 @@ public class Vegetable_list extends RecyclerView.Adapter<Vegetable_list.Myholder
         Picasso.get().load(lits.get(position).getImageurl()).into(holder.iv);
         holder.name.setText(lits.get(position).getName());
         holder.weight.setText(lits.get(position).getWeight());
+        holder.weight1.setText(lits.get(position).getWwight1());
         holder.price.setText(lits.get(position).getPrice());
+        holder.price1.setText(lits.get(position).getPrice1());
         long date = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YY");
         String dateString = sdf.format(date);
@@ -59,13 +61,15 @@ public class Vegetable_list extends RecyclerView.Adapter<Vegetable_list.Myholder
     }
 
     class Myholder extends RecyclerView.ViewHolder{
-            TextView name,weight,price,time;
+            TextView name,weight,weight1,price,price1,time;
             ImageView iv;
         public Myholder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.veg_name);
             weight=itemView.findViewById(R.id.veg_unit);
+            weight1=itemView.findViewById(R.id.veg_unit1);
             price=itemView.findViewById(R.id.veg_price);
+            price1=itemView.findViewById(R.id.veg_price1);
             iv=itemView.findViewById(R.id.veg_iv);
             time=itemView.findViewById(R.id.time);
         }

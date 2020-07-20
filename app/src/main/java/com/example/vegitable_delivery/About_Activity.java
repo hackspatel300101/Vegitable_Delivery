@@ -20,6 +20,14 @@ public class About_Activity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("અમારા વિશે ");
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(About_Activity.this,HomeActivity.class);
+        startActivity(i);
+        finish();
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId()==android.R.id.home);

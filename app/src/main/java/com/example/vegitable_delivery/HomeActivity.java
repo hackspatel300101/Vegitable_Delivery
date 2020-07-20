@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -18,7 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     ActionBarDrawerToggle toggle;
     CardView pricelist,oder;
-
+    private long backPressedTime = 0;
 
 
     @Override
@@ -85,6 +87,19 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onBackPressed() {        // to prevent irritating accidental logouts
+        long t = System.currentTimeMillis();
+        if (t - backPressedTime > 2000) {    // 2 secs
+            backPressedTime = t;
+            Toast.makeText(this, "Press Back Again To Exit",
+                    Toast.LENGTH_SHORT).show();
+        } else {    // this guy is serious
+            // clean up
+            super.onBackPressed();       // bye
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (toggle.onOptionsItemSelected(item))

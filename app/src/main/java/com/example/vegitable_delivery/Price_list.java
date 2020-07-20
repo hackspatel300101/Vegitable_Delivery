@@ -1,20 +1,14 @@
 package com.example.vegitable_delivery;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,20 +17,16 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.vegitable_delivery.adapter.Vegetable_list;
 import com.example.vegitable_delivery.model.Product_details;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-
-
 public class Price_list extends AppCompatActivity {
     RecyclerView recyclerView;
     Vegetable_list adp;
     ProgressDialog pd;
-    public String name,price,imageurl,weight,URL="https://test-ajay.000webhostapp.com/show_item.php";
+    public String name,price,price1,imageurl,weight,weight1,URL="https://diyavegetable.000webhostapp.com/vegetable_show.php";
     List<Product_details> list = new ArrayList<>();
     RequestQueue requestQueue;
 
@@ -71,15 +61,16 @@ public class Price_list extends AppCompatActivity {
                         JSONArray jsonArray = jsonObject.getJSONArray("root");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
-
                             name = object.getString("name");
                             price = object.getString("price");
+                            price1=object.getString("price1");
                             imageurl=object.getString("image_path");
                             weight=object.getString("kilogram");
+                            weight1=object.getString("kilogram1");
 
 
                             // here create model object and setter the data into setter method
-                            Product_details product_details = new Product_details(imageurl,name,price,weight);
+                            Product_details product_details = new Product_details(imageurl,name,price,price1,weight,weight1);
                             list.add(product_details);
 
 
@@ -130,6 +121,8 @@ public class Price_list extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent i = new Intent(Price_list.this,HomeActivity.class);
+        startActivity(i);
+        finish();
     }
 }

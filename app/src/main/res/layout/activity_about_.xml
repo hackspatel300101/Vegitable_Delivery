@@ -1,12 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".About_Activity">
     <include  layout="@layout/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="દિયા શાકભાજી સ્ટોર"
+        android:textColor="@android:color/black"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:textStyle="bold|italic" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="જવાહર બજાર, મહેમદાવાદ"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"
+        android:layout_gravity="center"
+        android:textStyle="bold|italic" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="નિરવ પટેલ : ૯૯૨૪૮૦૦૮૧૧ "
+        android:textColor="@android:color/black"
+        android:textSize="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="center|left"
+        android:textStyle="bold|italic" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:text="તમેન કઇ પણ પ્રશ્ન હોય તો ઉપર આપેલા નંબર પર કોલ  કરી જવાબ મેળવી શકો છો."
+        android:textColor="@android:color/black"
+        android:textSize="15dp"
+        android:layout_gravity="center"
+        android:textStyle="bold|italic" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>
+
+
+</LinearLayout>
